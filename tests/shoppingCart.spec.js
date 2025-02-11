@@ -1,21 +1,18 @@
 import { test, expect } from '@playwright/test';
 import CartPage from '../pages/CartPage';
+import cartTestData from '../data/cartTestData.json';
 
 test('Verify Shopping Cart Flow for T-shirts', async ({ page }) => {
   const cartPage = new CartPage(page);
   await cartPage.navigate();
   await cartPage.goToTShirts();
 
-  // Add first T-shirt
-  await cartPage.addTShirtToCart(0);
+  for (const product of cartTestData.products) {
+    await cartPage.addTShirtToCart(product.productIndex);
+  }
 
-  // Add another T-shirt
-  await cartPage.addTShirtToCart(1);
-
-  // Open cart and verify items
   await cartPage.openCart();
-  expect(await cartPage.verifyCartItems()).toBe(2);
+  expect(await cartPage.verifyCartItems()).toBe(cartTestData.products.length);
 
-  // Proceed to checkout
   await cartPage.proceedToCheckout();
 });

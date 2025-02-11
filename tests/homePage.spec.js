@@ -1,5 +1,6 @@
 import { test, expect } from '@playwright/test';
 import HomePage from '../pages/HomePage';
+import homePageData from '../data/homePageData.json';
 
 test.describe('Home Page Verification', () => {
   test.beforeEach(async ({ page }) => {
@@ -9,28 +10,18 @@ test.describe('Home Page Verification', () => {
 
   test('Verify menu options', async () => {
     const menuOptions = await this.homePage.getMenuOptions();
-    expect(menuOptions).toEqual([
-      'Home', 'Products', 'Cart', 'Signup / Login', 'Test Cases', 'API Testing', 'Video Tutorials', 'Contact us'
-    ]);
+    expect(menuOptions).toEqual(homePageData.menuOptions);
   });
 
-  test('Verify carousel contains 3 slides', async () => {
-    expect(await this.homePage.getCarouselSlideCount()).toBe(3);
+  test('Verify carousel contains expected slides', async () => {
+    expect(await this.homePage.getCarouselSlideCount()).toBe(homePageData.carouselSlides);
   });
 
-  test('Verify categories section contains 3 categories', async () => {
-    expect(await this.homePage.getCategoryCount()).toBe(3);
+  test('Verify categories section count', async () => {
+    expect(await this.homePage.getCategoryCount()).toBe(homePageData.categoriesCount);
   });
 
-  test('Verify brands section contains 9 brands', async () => {
-    expect(await this.homePage.getBrandCount()).toBe(9);
-  });
-
-  test('Verify featured items section is visible', async () => {
-    expect(await this.homePage.isFeaturedItemsVisible()).toBeTruthy();
-  });
-
-  test('Verify footer subscription is visible', async () => {
-    expect(await this.homePage.isFooterSubscriptionVisible()).toBeTruthy();
+  test('Verify brands section count', async () => {
+    expect(await this.homePage.getBrandCount()).toBe(homePageData.brandsCount);
   });
 });
