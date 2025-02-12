@@ -2,7 +2,7 @@ class HomePage {
   constructor(page) {
     this.page = page;
     this.menuOptions = page.locator('.nav.navbar-nav li a');
-    this.carouselSlides = page.locator('.carousel-inner .item');
+    this.carouselSlides = page.locator('#slider-carousel .carousel-inner .item');
     this.categorySection = page.locator('.category-products .panel-title a');
     this.brandLogos = page.locator('.brands-name ul li');
     this.featuredItems = page.locator('.features_items');
@@ -21,8 +21,9 @@ class HomePage {
     );
   }
   
-  async getCarouselSlideCount() {
-    return await this.carouselSlides.count();
+  async getCarouselDetails() {
+    const slideCount = await this.carouselSlides.count();
+    return { slideCount };
   }
 
   async getCategories() {

@@ -17,9 +17,10 @@ test.describe('Home Page Verification', () => {
   });
 
   test('Verify carousel contains expected slides', async () => {
-    expect(await homePage.getCarouselSlideCount()).toBe(homePageData.carouselSlides);
+    const { slideCount } = await homePage.getCarouselDetails();
+    expect(slideCount).toBe(homePageData.carouselSlides);
   });
-
+  
   test('Verify categories section', async () => {
     const { count, names } = await homePage.getCategories();
     console.log(count , names);
