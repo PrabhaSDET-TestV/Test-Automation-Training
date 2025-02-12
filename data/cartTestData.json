@@ -1,7 +1,7 @@
 {
-    "products": [
-      { "category": "Men", "subcategory": "T-shirts", "productIndex": 0 },
-      { "category": "Men", "subcategory": "T-shirts", "productIndex": 1 }
-    ]
-  }
-  
+  "productName": "Pure Cotton Neon Green Tshirt",
+  "expectedCartProducts": [
+    "Pure Cotton Neon Green Tshirt",
+    "Some Other T-shirt"
+  ]
+}

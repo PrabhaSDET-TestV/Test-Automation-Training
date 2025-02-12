@@ -8,6 +8,9 @@ class HomePage {
     this.featuredItems = page.locator('.features_items');
     this.footerSubscription = page.locator('#susbscribe_email');
     this.subscribeButton = page.locator('#subscribe');
+
+    this.menCategory = page.locator('a[href="#Men"]');
+    this.tshirtsSubcategory = page.locator('a[href="/category_products/3"]');
   }
 
   async navigate() {
@@ -56,6 +59,12 @@ class HomePage {
     await this.footerSubscription.fill(email);
     await this.subscribeButton.click();
   }
+
+  async goToMenTShirts() {
+    await this.menCategory.click();
+    await this.tshirtsSubcategory.click();
+    await this.page.waitForLoadState('domcontentloaded');
+}
 }
 
 export default HomePage;
