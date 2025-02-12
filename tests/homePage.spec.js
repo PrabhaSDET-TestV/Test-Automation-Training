@@ -23,8 +23,8 @@ test.describe('Home Page Verification', () => {
   test('Verify categories section', async () => {
     const { count, names } = await homePage.getCategories();
     console.log(count , names);
-    expect(count).toBe(homePageData.categoriesCount); // Validate count
-    expect(names).toEqual(homePageData.expectedCategories); // Validate category names
+    expect(count).toBe(homePageData.categoriesCount);
+    expect(names).toEqual(homePageData.expectedCategories);
   });
   
   test('Verify brands section count', async () => {
