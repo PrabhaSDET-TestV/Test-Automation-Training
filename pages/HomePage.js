@@ -63,8 +63,8 @@ class HomePage {
   async goToMenTShirts() {
     await this.menCategory.click();
     await this.tshirtsSubcategory.click();
-    await this.page.waitForLoadState('domcontentloaded');
-}
+    await this.page.waitForLoadState('networkidle');
+  }
 }
 
 export default HomePage;

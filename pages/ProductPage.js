@@ -1,8 +1,8 @@
 class ProductPage {
     constructor(page) {
         this.page = page;
-        this.tshirtProduct = page.locator('h2:has-text("Pure Cotton Neon Green Tshirt")');
-        this.addToCartButton = this.tshirtProduct.locator('xpath=//button[contains(text(),"Add to cart")]');
+        this.tshirtProduct = page.getByText('Pure Cotton Neon Green Tshirt').first();
+        this.addToCartButton = this.tshirtProduct.locator('.add-to-cart');
         this.successPopup = page.locator('.modal-content'); // Success message popup
         this.continueShoppingButton = page.locator('.btn-success:has-text("Continue Shopping")');
         this.viewCartButton = page.locator('.btn-success:has-text("View Cart")');
