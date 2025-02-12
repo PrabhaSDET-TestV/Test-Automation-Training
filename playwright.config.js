@@ -7,7 +7,6 @@ export default defineConfig({
     timeout: 5000
   },
   use: {
-    baseURL: 'https://automationexercise.com/',
     browserName: 'chromium',
     headless: true,
     screenshot: 'only-on-failure',
