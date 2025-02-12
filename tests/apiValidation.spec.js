@@ -66,7 +66,7 @@ test('API 7: POST To Verify Login with valid details', async ({ page, request })
   const responseBody = await response.json();
   console.log("API Response:", JSON.stringify(responseBody, null, 2));
 
-   // Validate Response Structure
+  // Validate Response Structure
   expect(responseBody).toHaveProperty('responseCode', apiInfo.expectedStatus);
   expect(responseBody).toHaveProperty('message', apiInfo.expectedMessage);
 
