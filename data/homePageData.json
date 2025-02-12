@@ -1,6 +1,7 @@
 {
     "menuOptions": ["Home", "Products", "Cart", "Signup / Login", "Test Cases", "API Testing", "Video Tutorials", "Contact us"],
     "carouselSlides": 3,
+    "expectedCategories": ["Women", "Men", "Kids"],
     "categoriesCount": 3,
     "brandsCount": 8
   }

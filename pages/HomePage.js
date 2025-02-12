@@ -3,7 +3,7 @@ class HomePage {
     this.page = page;
     this.menuOptions = page.locator('.nav.navbar-nav li a');
     this.carouselSlides = page.locator('.carousel-inner .item');
-    this.categorySection = page.locator('.category-products');
+    this.categorySection = page.locator('.category-products .panel-title a');
     this.brandLogos = page.locator('.brands-name ul li');
     this.featuredItems = page.locator('.features_items');
     this.footerSubscription = page.locator('#susbscribe_email');
@@ -15,17 +15,24 @@ class HomePage {
   }
 
   async getMenuOptions() {
-    return await this.menuOptions.allTextContents();
+    const menuItems = await this.menuOptions.allTextContents();
+    return menuItems.map(item => 
+      item.replace(/[^\w\s/-]/g, '').trim().replace(/\s+/g, ' ') // Remove icons, trim spaces
+    );
   }
-
+  
   async getCarouselSlideCount() {
     return await this.carouselSlides.count();
   }
 
-  async getCategoryCount() {
-    return await this.categorySection.locator('h2').count();
+  async getCategories() {
+    const categories = await this.categorySection.allTextContents();
+    return {
+      count: categories.length,
+      names: categories.map(name => name.trim()) // Trim extra spaces
+    };
   }
-
+  
   async getBrandCount() {
     return await this.brandLogos.count();
   }

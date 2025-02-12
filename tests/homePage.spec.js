@@ -12,6 +12,7 @@ test.describe('Home Page Verification', () => {
 
   test('Verify menu options', async () => {
     const menuOptions = await homePage.getMenuOptions();
+    console.log(menuOptions)
     expect(menuOptions).toEqual(homePageData.menuOptions);
   });
 
@@ -19,10 +20,13 @@ test.describe('Home Page Verification', () => {
     expect(await homePage.getCarouselSlideCount()).toBe(homePageData.carouselSlides);
   });
 
-  test('Verify categories section count', async () => {
-    expect(await homePage.getCategoryCount()).toBe(homePageData.categoriesCount);
+  test('Verify categories section', async () => {
+    const { count, names } = await homePage.getCategories();
+    console.log(count , names);
+    expect(count).toBe(homePageData.categoriesCount); // Validate count
+    expect(names).toEqual(homePageData.expectedCategories); // Validate category names
   });
-
+  
   test('Verify brands section count', async () => {
     expect(await homePage.getBrandCount()).toBe(homePageData.brandsCount);
   });
