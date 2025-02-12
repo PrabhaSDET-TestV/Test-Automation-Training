@@ -4,7 +4,7 @@ class HomePage {
     this.menuOptions = page.locator('.nav.navbar-nav li a');
     this.carouselSlides = page.locator('#slider-carousel .carousel-inner .item');
     this.categorySection = page.locator('.category-products .panel-title a');
-    this.brandLogos = page.locator('.brands-name ul li');
+    this.brandLogos = page.locator('.brands-name ul li a');
     this.featuredItems = page.locator('.features_items');
     this.footerSubscription = page.locator('#susbscribe_email');
     this.subscribeButton = page.locator('#subscribe');
@@ -34,8 +34,10 @@ class HomePage {
     };
   }
   
-  async getBrandCount() {
-    return await this.brandLogos.count();
+  async getBrandDetails() {
+    const count = await this.brandLogos.count();
+    const names = await this.brandLogos.allInnerTexts();
+    return { count, names: names.map(name => name.replace(/\(\d+\)/, '').trim()) }; // Remove product count from names
   }
 
   async isFeaturedItemsVisible() {

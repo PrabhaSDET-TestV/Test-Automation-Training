@@ -3,6 +3,16 @@
     "carouselSlides": 3,
     "expectedCategories": ["Women", "Men", "Kids"],
     "categoriesCount": 3,
-    "brandsCount": 8
-  }
+    "brandsCount": 8,
+    "brandsList": [
+      "POLO",
+      "H&M",
+      "MADAME",
+      "MAST & HARBOUR",
+      "BABYHUG",
+      "ALLEN SOLLY JUNIOR",
+      "KOOKIE KIDS",
+      "BIBA"
+    ]
+}
   

@@ -28,8 +28,11 @@ test.describe('Home Page Verification', () => {
     expect(names).toEqual(homePageData.expectedCategories);
   });
   
-  test('Verify brands section count', async () => {
-    expect(await homePage.getBrandCount()).toBe(homePageData.brandsCount);
+  test('Verify brands section count and names', async () => {
+    const { count, names } = await homePage.getBrandDetails();
+    console.log(names)
+    expect(count).toBe(homePageData.brandsCount);
+    expect(names).toEqual(homePageData.brandsList);
   });
 
   test('Verify featured items are visible', async () => {
