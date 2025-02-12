@@ -48,6 +48,10 @@ class HomePage {
     return await this.footerSubscription.isVisible();
   }
 
+  async isSubscriptionButtonVisible() {
+    return await this.subscribeButton.isVisible();
+  }
+  
   async subscribe(email) {
     await this.footerSubscription.fill(email);
     await this.subscribeButton.click();

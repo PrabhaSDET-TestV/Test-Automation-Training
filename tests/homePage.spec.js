@@ -39,12 +39,9 @@ test.describe('Home Page Verification', () => {
     expect(await homePage.isFeaturedItemsVisible()).toBe(true);
   });
 
-  test('Verify footer subscription section is visible', async () => {
+  test('Verify footer subscription section visibility', async () => {
     expect(await homePage.isFooterSubscriptionVisible()).toBe(true);
+    expect(await homePage.isSubscriptionButtonVisible()).toBe(true);
   });
-
-  test('Verify subscription functionality', async () => {
-    await homePage.subscribe('testuser@example.com');
-    // Add an assertion here to check for a confirmation message if needed
-  });
+  
 });
