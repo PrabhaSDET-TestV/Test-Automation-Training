@@ -3,10 +3,10 @@ import HomePage from '../pages/HomePage';
 import homePageData from '../data/homePageData.json';
 
 test.describe('Home Page Verification', () => {
-  let homePage;  // Declare homePage at the describe level
+  let homePage;
 
   test.beforeEach(async ({ page }) => {
-    homePage = new HomePage(page);  // Initialize HomePage
+    homePage = new HomePage(page);
     await homePage.navigate();
   });
 
