@@ -1,7 +1,8 @@
 {
-  "productName": "Pure Cotton Neon Green Tshirt",
+  "product1Name": "Pure Cotton Neon Green Tshirt",
+  "product2Name": "GRAPHIC DESIGN MEN T SHIRT - BLUE",
   "expectedCartProducts": [
-    "Pure Cotton Neon Green Tshirt",
-    "Some Other T-shirt"
+    { "name": "Pure Cotton Neon Green Tshirt", "price": "Rs. 850" },
+    { "name": "GRAPHIC DESIGN MEN T SHIRT - BLUE", "price": "Rs. 1389" }
   ]
 }

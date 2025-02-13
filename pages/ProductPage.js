@@ -1,38 +1,42 @@
 class ProductPage {
     constructor(page) {
         this.page = page;
-        this.tshirtProduct = page.getByText('Pure Cotton Neon Green Tshirt').first();
-        this.addToCartButton = this.tshirtProduct.locator('.add-to-cart');
-        this.successPopup = page.locator('.modal-content'); // Success message popup
-        this.continueShoppingButton = page.locator('.btn-success:has-text("Continue Shopping")');
-        this.viewCartButton = page.locator('.btn-success:has-text("View Cart")');
     }
 
-    async scrollToProduct() {
-        await this.tshirtProduct.scrollIntoViewIfNeeded();
+    getProductLocator(productName) {
+        return this.page.locator('.productinfo').filter({ hasText: productName });
     }
 
-    async verifyProductDetails() {
+    getAddToCartButton(productName) {
+        return this.getProductLocator(productName).getByRole('link', { name: 'Add to cart' });
+    }
+
+    async scrollToProduct(productName) {
+        const product = this.getProductLocator(productName).first();
+        await product.scrollIntoViewIfNeeded();
+    }
+
+    async verifyProductDetails(productName) {
+        const product = this.getProductLocator(productName);
         return {
-            name: await this.tshirtProduct.textContent(),
-            addToCartVisible: await this.addToCartButton.isVisible(),
+            name: await product.locator('p').textContent(),
+            addToCartVisible: await this.getAddToCartButton(productName).first().isVisible(),
         };
     }
 
-    async addToCart() {
-        await this.addToCartButton.click();
+    async addToCart(productName) {
+        await this.getAddToCartButton(productName).first().click();
         await this.page.waitForSelector('.modal-content', { state: 'visible' });
     }
 
     async continueShopping() {
-        await this.continueShoppingButton.click();
-        await this.page.waitForSelector('.modal-content', { state: 'hidden' });
+        await this.page.getByRole('button', { name: 'Continue Shopping' }).click();
     }
 
     async viewCart() {
-        await this.viewCartButton.click();
+        await this.page.getByRole('link', { name: 'View Cart' }).click();
         await this.page.waitForLoadState('domcontentloaded');
     }
 }
 
-module.exports = ProductPage;
+export default ProductPage;

@@ -20,7 +20,7 @@ class HomePage {
   async getMenuOptions() {
     const menuItems = await this.menuOptions.allTextContents();
     return menuItems.map(item => 
-      item.replace(/[^\w\s/-]/g, '').trim().replace(/\s+/g, ' ') // Remove icons, trim spaces
+      item.replace(/[^\w\s/-]/g, '').trim().replace(/\s+/g, ' ')
     );
   }
   
@@ -33,14 +33,14 @@ class HomePage {
     const categories = await this.categorySection.allTextContents();
     return {
       count: categories.length,
-      names: categories.map(name => name.trim()) // Trim extra spaces
+      names: categories.map(name => name.trim())
     };
   }
   
   async getBrandDetails() {
     const count = await this.brandLogos.count();
     const names = await this.brandLogos.allInnerTexts();
-    return { count, names: names.map(name => name.replace(/\(\d+\)/, '').trim()) }; // Remove product count from names
+    return { count, names: names.map(name => name.replace(/\(\d+\)/, '').trim()) };
   }
 
   async isFeaturedItemsVisible() {

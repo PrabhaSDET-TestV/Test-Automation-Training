@@ -15,28 +15,32 @@ test('Verify Shopping Cart Flow for T-shirts', async ({ page }) => {
     // Step 2: Navigate to "Men" Category → "T-shirts"
     await homePage.goToMenTShirts();
 
-    // Step 3: Scroll to "Pure Cotton Neon Green Tshirt"
-    await productPage.scrollToProduct();
-
-    // Step 4: Verify product details
-    const productDetails = await productPage.verifyProductDetails();
-    expect(productDetails.name).toBe(testData.productName);
-    expect(productDetails.addToCartVisible).toBe(true);
-
-    // Step 5: Add product to cart
-    await productPage.addToCart();
+    // Step 3: Add the first T-shirt
+    const product1 = "Pure Cotton Neon Green Tshirt";
+    await productPage.scrollToProduct(product1);
+    const productDetails1 = await productPage.verifyProductDetails(product1);
+    console.log(productDetails1);
+    expect(productDetails1.name).toBe(testData.product1Name);
+    expect(productDetails1.addToCartVisible).toBe(true);
+    await productPage.addToCart(product1);
     await productPage.continueShopping();
 
-    // Step 6: Add another T-shirt
-    await productPage.addToCart();
+    // Step 4: Add the second T-shirt
+    const product2 = "GRAPHIC DESIGN MEN T SHIRT - BLUE";
+    await productPage.scrollToProduct(product2);
+    const productDetails2 = await productPage.verifyProductDetails(product2);
+    console.log(productDetails2);
+    expect(productDetails2.name).toBe(testData.product2Name);
+    expect(productDetails2.addToCartVisible).toBe(true);
+    await productPage.addToCart(product2);
 
-    // Step 7: View cart
+    // Step 5: View cart
     await productPage.viewCart();
 
-    // Step 8: Verify cart contains correct products
+    // Step 6: Verify cart contains correct products
     const cartProducts = await cartPage.getCartProducts();
     expect(cartProducts).toEqual(testData.expectedCartProducts);
 
-    // Step 9: Proceed to checkout
+    // Step 7: Proceed to checkout
     await cartPage.proceedToCheckout();
 });
